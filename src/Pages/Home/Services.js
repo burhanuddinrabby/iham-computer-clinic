@@ -1,45 +1,23 @@
-import React from 'react';
-import fluoride from '../../assets/images/fluoride.png';
-import cavity from '../../assets/images/cavity.png';
-import whitening from '../../assets/images/whitening.png';
+import React, { useEffect, useState } from 'react';
 import Service from './Service';
 
 const Services = () => {
-    const services = [
-        {
-            _id: 1,
-            name: 'Fluoride Treatment',
-            description: '',
-            img: fluoride
-        },
-        {
-            _id: 2,
-            name: 'Cavity Filling',
-            description: '',
-            img: cavity
-        },
-        {
-            _id: 3,
-            name: 'Teeth Whitening',
-            description: '',
-            img: whitening
-        },
-    ];
+    const [services, setServices] = useState([]);
+    useEffect(() => {
+        fetch('services.json')
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
     return (
-        <div className='my-28'>
-            <div className='text-center'>
-                <h3 className='text-primary  text-xl font-bold uppercase'>Our Services</h3>
-                <h2 className='text-4xl'>Services We Provide</h2>
-            </div>
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+        <>
+            <h1 className='text-6xl text-center font-bold mb-8 text-[#24cfcc]'>Our Products</h1>
+            <hr className='max-w-6xl mx-auto h-6' />
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-auto mt-8 mb-24 max-w-7xl gap-x-8 gap-y-10 sm:px-4'>
                 {
-                    services.map(service =><Service
-                        key={service._id}
-                        service={service}
-                    ></Service>)
+                    services.slice(0, 6).map((service, index) => <Service key={index} service={service}></Service>)
                 }
             </div>
-        </div>
+        </>
     );
 };
 

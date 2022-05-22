@@ -1,0 +1,32 @@
+.data-text-sm {
+    position: relative;
+}
+
+@media screen and (min-width: 1280px) {
+    .data-text-sm::before {
+        content: attr(datatext);
+        position: absolute;
+        color: rgba(0, 255, 251, 0.349);
+        width: 0;
+        height: 112%;
+        overflow: hidden;
+        border-right: 5px solid rgba(0, 255, 251, 0.349);
+        top: 0;
+        left: 0;
+        animation: animate 3s linear infinite;
+    }
+}
+
+@keyframes animate {
+
+    0%,
+    100% {
+        width: 0%;
+        overflow: hidden;
+    }
+
+    50% {
+        width: 50%;
+        overflow: hidden;
+    }
+}

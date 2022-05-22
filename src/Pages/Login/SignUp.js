@@ -18,7 +18,7 @@ const SignUp = () => {
 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    const [token]  = useToken(user || gUser);
+    const [token] = useToken(user || gUser);
 
     const navigate = useNavigate();
 
@@ -125,7 +125,7 @@ const SignUp = () => {
                     <button
                         onClick={() => signInWithGoogle()}
                         className="btn btn-outline"
-                    >Continue with Google</button>
+                    >Sing In with Google</button>
                 </div>
             </div>
         </div >
