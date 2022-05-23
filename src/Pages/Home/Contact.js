@@ -17,7 +17,7 @@ const Contact = () => {
 
   return (
     <div>
-      <section className="bg-dark py-20 lg:py-[120px] overflow-hidden relative px-4 lg:px-0">
+      <section className="py-20 lg:py-[120px] overflow-hidden relative px-4 lg:px-0">
         <div className="container mx-auto">
           <div className="flex flex-wrap lg:justify-evenly -mx-4">
             <div className="w-full lg:w-1/2 xl:w-6/12 px-4">

@@ -4,48 +4,55 @@
     "img": "https://i.ibb.co/dJQr1GL/image.png",
     "price": "50",
     "minQuantity": "100",
-    "available": "500"
+    "available": "500",
+    "description": "We provide the original product with 100% customer happiness. More other accessories are "
   },
   {
     "name": "Hard Drive",
     "img": "https://i.ibb.co/wL3ZHbj/image.png",
     "price": "20",
     "minQuantity": "100",
-    "available": "300"
+    "available": "300",
+    "description": "We provide the original product with 100% customer happiness. More other accessories are "
   },
   {
     "name": "CPU",
     "img": "https://i.ibb.co/vB5d8bT/image.png",
     "price": "50",
     "minQuantity": "70",
-    "available": "200"
+    "available": "200",
+    "description": "We provide the original product with 100% customer happiness. More other accessories are "
   },
   {
     "name": "Motherboard",
     "img": "https://i.ibb.co/n0mvvvH/image-1.png",
     "price": "200",
     "minQuantity": "50",
-    "available": "100"
+    "available": "100",
+    "description": "We provide the original product with 100% customer happiness. More other accessories are "
   },
   {
     "name": "GPU",
     "img": "https://i.ibb.co/XXmYtnq/image-2.png",
     "price": "200",
     "minQuantity": "50",
-    "available": "100"
+    "available": "100",
+    "description": "We provide the original product with 100% customer happiness. More other accessories are "
   },
   {
     "name": "Power Supply",
     "img": "https://i.ibb.co/34ShKs8/image-3.png",
     "price": "200",
     "minQuantity": "50",
-    "available": "100"
+    "available": "100",
+    "description": "We provide the original product with 100% customer happiness. More other accessories are "
   },
   {
     "name": "Monitor",
     "img": "https://i.ibb.co/qs8W7zm/image-4.png",
     "price": "200",
     "minQuantity": "50",
-    "available": "100"
+    "available": "100",
+    "description": "We provide the original product with 100% customer happiness. More other accessories are "
   }
 ]
