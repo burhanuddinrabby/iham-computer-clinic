@@ -34,7 +34,7 @@ const Order = ({ orders, order, index, setOrders }) => {
                 <td>
                     <div className='flex gap-3 justify-center'>
                         <button className='btn btn-xs btn-success'>pay</button>
-                        <button class="btn btn-xs btn-error" onClick={() => handleCancel(_id)}>Cancel</button>
+                        <button className="btn btn-xs btn-error" onClick={() => handleCancel(_id)}>Cancel</button>
 
                     </div>
                     {/* <Link to={`/dashboard/payment/${order._id}`}>

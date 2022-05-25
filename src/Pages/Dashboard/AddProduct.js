@@ -9,7 +9,7 @@ const AddProduct = () => {
 
     // const { data: services, isLoading } = useQuery('services', () => fetch('https://secret-dusk-46242.herokuapp.com/service').then(res => res.json()))
 
-    // const imageStorageKey='4295ac4d47b569312bea67b440cdbdbb';
+    /*/ const imageStorageKey='4295ac4d47b569312bea67b440cdbdbb';
 
     // /**
     //  * 3 ways to store images

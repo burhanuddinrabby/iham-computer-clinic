@@ -1,43 +1,62 @@
-import React from 'react';
-import people1 from '../../assets/images/people1.png'
-import people2 from '../../assets/images/people2.png'
-import people3 from '../../assets/images/people3.png'
+import React, { useEffect, useState } from 'react';
 import Review from './Review';
+
 const Reviews = () => {
-    const reviews = [
-        {
-            _id: 1,
-            name: 'Winson Herry',
-            review: '',
-            location: 'california',
-            img: people1
-        },
-        {
-            _id: 2,
-            name: 'Winson Herry',
-            review: '',
-            location: 'california',
-            img: people2
-        },
-        {
-            _id: 3,
-            name: 'Winson Herry',
-            review: '',
-            location: 'california',
-            img: people3
-        },
-    ];
+    const [reviews, setReviews] = useState([]);
+    const [down, setDown] = useState(0);
+    const [up, setUp] = useState(3);
+    const [pageNumber, setPage] = useState(1);
+    const handleUp = () => {
+        setDown(down + 1)
+        setUp(up + 1)
+    }
+    const handleDown = () => {
+        setDown(down - 1)
+        setUp(up - 1)
+    }
+    const pages = Math.ceil(reviews.length / 3);
+    const totalPages = [];
+    for (let i = 1; i <= pages; i++) {
+        totalPages.push(i)
+    }
+    const handlePage = (down) => {
+        setDown(down * 3);
+        setUp(down * 3 + 3)
+    }
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => setReviews(data.reverse()))
+    }, [])
     return (
         <section className='my-28 mx-auto mt-24 mb-24 max-w-7xl'>
             <h1 className='text-[#24cfcc] text-center text-4xl font-bold mb-10'>Our Customer Reviews</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+
+            <div className="carousel w-full">
+                <div id="slide1" className="carousel-item relative w-full">
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto text-[#1a1717]'>
+                        {
+                            reviews.slice(down, up).map(review => <Review
+                                key={review._id}
+                                review={review}
+                            ></Review>)
+                        }
+                    </div>
+                    <div className="absolute flex justify-between transform -translate-y-1/2 left-1 right-1 top-1/2">
+                        <button onClick={handleDown} className="btn btn-circle btn-accent" disabled={down === 0}>❮</button>
+                        <button onClick={handleUp} className="btn btn-circle" disabled={up >= reviews.length}>❯</button>
+                    </div>
+                </div>
+            </div>
+            <div className="flex justify-center w-full py-2 gap-2 mt-3">
                 {
-                    reviews.map(review => <Review
-                        key={review._id}
-                        review={review}
-                    ></Review>)
+                    totalPages.map((page, index) => <button key={index} className={`btn btn-xs ${pageNumber === page ? 'btn-warning' : 'btn-primary'}`} onClick={() => {
+                        handlePage(page - 1)
+                        setPage(page)
+                    }}>{page}</button>)
                 }
             </div>
+
         </section>
     );
 };
