@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PrimaryButton from '../Shared/PrimaryButton';
 
 const Service = ({ service, }) => {
-    const { name, img, description, available, price, minQuantity } = service;
+    const { _id, name, img, description, available, price, minQuantity } = service;
     return (
         <div className="card card-compact lg:w-lg bg-[#cbcaca] text-[#000] shadow-xl">
             <figure><img src={img} className='w-full' alt="Shoes" /></figure>
@@ -14,7 +13,7 @@ const Service = ({ service, }) => {
                 <p>Minimum Quantity : {minQuantity}</p>
                 <p>Price : ${price}</p>
                 <div className="card-actions justify-end">
-                    <PrimaryButton className="btn btn-primary">Order Now</PrimaryButton>
+                    <Link to={`/purchase/${_id}`} className="btn btn-primary">Order Now</Link>
                 </div>
             </div>
         </div>)

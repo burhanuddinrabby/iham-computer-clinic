@@ -2,9 +2,9 @@ import React from 'react';
 import './Blogs.css'
 const Blogs = () => {
     return (
-        <div>
-            <div className='blog-container mt-3'>
-                <div className='blog'>
+        <div className='text-[#dfd2d2]'>
+            <div className='blog-container'>
+                <div className='blog  mt-6'>
                     <h2>What are differences between JavaScript and nodejs?</h2>
                     <p>Javascript is a programming language that is used for writing scripts on the website but NodeJS is a Javascript runtime environment. JavaScript is used for client side and NodeJS is used for server side. Nodejs does not have capability to add HTML tags but JavaScript can add HTML tags using DOM.</p>
                 </div>

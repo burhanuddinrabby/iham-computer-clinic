@@ -16,16 +16,10 @@ const Navbar = () => {
     const menuItems = <>
         <li><Link to="/">Home</Link></li>
         {
-            user && <li><Link to="/appointment">Appointment</Link></li>
-        }
-        {
-            user && <li><Link to="/review">Add a Review</Link></li>
-        }
-        {
             user && <li><Link to="/dashboard">Dashboard</Link></li>
         }
         <li><Link to="/blogs">Blogs</Link></li>
-        <li><Link to="/about">Portfolio</Link></li>
+        <li><Link to="/portfolio">Portfolio</Link></li>
         <li>{user ? <button className="btn btn-ghost" onClick={logout} >Sign Out</button> : <Link to="/login">Login</Link>}</li>
     </>
     return (

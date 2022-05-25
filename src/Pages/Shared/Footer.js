@@ -8,6 +8,7 @@ const Footer = () => {
             background: `url(${footer})`,
             backgroundSize: 'cover'
         }} className="p-10">
+            <hr className='mb-8' />
             <div className='footer text-[#bcb4b4]'>
                 <div>
                     <span className="footer-title">Services</span>

@@ -6,47 +6,51 @@ import Blogs from './Pages/Blogs/Blogs'
 import NotFound from './Pages/NotFound/NotFound';
 import About from './Pages/About/About';
 import Login from './Pages/Login/Login';
-import Appointment from './Pages/Appointment/Appointment';
+import Purchase from './Pages/Appointment/Purchase';
 import SignUp from './Pages/Login/SignUp';
 import RequireAuth from './Pages/Login/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyAppointments from './Pages/Dashboard/MyAppointments';
-import MyReview from './Pages/Dashboard/MyReview';
-import MyHistory from './Pages/Dashboard/MyHistory';
+import AddReview from './Pages/Dashboard/MyReview';
+import MyProfile from './Pages/Dashboard/MyProfile';
 import Users from './Pages/Dashboard/Users';
 import AddDoctor from './Pages/Dashboard/AddDoctor';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 import Payment from './Pages/Dashboard/Payment';
+import Footer from './Pages/Shared/Footer';
 
 function App() {
   return (
     <div>
       <Navbar></Navbar>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="portfolio" element={<About />} />
-        <Route path="blogs" element={<Blogs></Blogs>} />
-        <Route path="appointment" element={
-          <RequireAuth>
-            <Appointment />
-          </RequireAuth>
-        } />
-        <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
-          <Route index element={<MyAppointments></MyAppointments>}></Route>
-          <Route path="review" element={<MyReview></MyReview>}></Route>
-          <Route path="history" element={<MyHistory></MyHistory>}></Route>
-          <Route path="payment/:id" element={<Payment></Payment>}></Route>
-          <Route path="users" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
-          <Route path="addDoctor" element={<RequireAdmin><AddDoctor></AddDoctor></RequireAdmin>}></Route>
-          <Route path="manageDoctor" element={<RequireAdmin><ManageDoctors></ManageDoctors></RequireAdmin>}></Route>
-        </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="*" element={<NotFound></NotFound>} />
-      </Routes>
+      <div className='text-[#bcb4b4]' style={{ minHeight: '60vh' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="portfolio" element={<About />} />
+          <Route path="blogs" element={<Blogs></Blogs>} />
+          <Route path="purchase/:id" element={
+            <RequireAuth>
+              <Purchase />
+            </RequireAuth>
+          } />
+          <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
+            <Route index element={<MyAppointments></MyAppointments>}></Route>
+            <Route path="add-review" element={<AddReview></AddReview>}></Route>
+            <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
+            <Route path="payment/:id" element={<Payment></Payment>}></Route>
+            <Route path="users" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
+            <Route path="addDoctor" element={<RequireAdmin><AddDoctor></AddDoctor></RequireAdmin>}></Route>
+            <Route path="manageDoctor" element={<RequireAdmin><ManageDoctors></ManageDoctors></RequireAdmin>}></Route>
+          </Route>
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="*" element={<NotFound></NotFound>} />
+        </Routes>
+      </div>
+      <Footer></Footer>
       <ToastContainer />
     </div>
   );
