@@ -12,11 +12,11 @@ import RequireAuth from './Pages/Login/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './Pages/Dashboard/Dashboard';
-import MyAppointments from './Pages/Dashboard/MyAppointments';
-import AddReview from './Pages/Dashboard/MyReview';
+import MyOrders from './Pages/Dashboard/MyOrders';
+import AddReview from './Pages/Dashboard/AddReview';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import Users from './Pages/Dashboard/Users';
-import AddDoctor from './Pages/Dashboard/AddDoctor';
+import AddProduct from './Pages/Dashboard/AddProduct';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 import Payment from './Pages/Dashboard/Payment';
@@ -37,12 +37,12 @@ function App() {
             </RequireAuth>
           } />
           <Route path="dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} >
-            <Route index element={<MyAppointments></MyAppointments>}></Route>
+            <Route index element={<MyOrders></MyOrders>}></Route>
             <Route path="add-review" element={<AddReview></AddReview>}></Route>
             <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
             <Route path="payment/:id" element={<Payment></Payment>}></Route>
             <Route path="users" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
-            <Route path="addDoctor" element={<RequireAdmin><AddDoctor></AddDoctor></RequireAdmin>}></Route>
+            <Route path="addDoctor" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
             <Route path="manageDoctor" element={<RequireAdmin><ManageDoctors></ManageDoctors></RequireAdmin>}></Route>
           </Route>
           <Route path="login" element={<Login />} />

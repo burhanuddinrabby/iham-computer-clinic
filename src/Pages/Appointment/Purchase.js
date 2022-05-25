@@ -44,7 +44,8 @@ const Purchase = () => {
                 fetch('http://localhost:5000/orders', {
                     method: 'POST',
                     headers: {
-                        'content-type': 'application/json'
+                        'content-type': 'application/json',
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
                     },
                     body: JSON.stringify(newOrder)
                 })
@@ -52,6 +53,14 @@ const Purchase = () => {
                     .then(data => {
                         if (data.success) {
                             toast(`Your order is set. Go to dashboard and check My order`)
+                            fetch(`http://localhost:5000/purchase/${id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'content-type': 'application/json',
+                                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                                },
+                                body: JSON.stringify(newService)
+                            })
                         }
                         else {
                             toast.error(`Failed to add order`)

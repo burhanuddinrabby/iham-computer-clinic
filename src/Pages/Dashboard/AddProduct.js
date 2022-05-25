@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
 
-const AddDoctor = () => {
+const AddProduct = () => {
     // const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     // const { data: services, isLoading } = useQuery('services', () => fetch('https://secret-dusk-46242.herokuapp.com/service').then(res => res.json()))
@@ -156,4 +156,4 @@ const AddDoctor = () => {
     // );
 };
 
-export default AddDoctor;
+export default AddProduct;

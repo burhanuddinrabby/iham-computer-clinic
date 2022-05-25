@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import DeleteConfirmModal from './DeleteConfirmModal';
-import DoctorRow from './DoctorRow';
+import Order from './Order';
 
 const ManageDoctors = () => {
     // const [deletingDoctor, setDeletingDoctor] = useState(null);
