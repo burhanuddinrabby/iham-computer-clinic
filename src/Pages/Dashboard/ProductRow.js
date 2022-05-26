@@ -1,24 +1,6 @@
 import React from 'react';
 
-const ProductRow = ({ service, refetch, index }) => {
-    const handleDeleteProduct = (id) => {
-        const confirm = window.confirm('Are you sure you want to delete this product?');
-        if (confirm) {
-            fetch(`https://pure-dawn-17806.herokuapp.com/service/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        refetch();
-                    }
-                }
-                )
-        }
-    }
+const ProductRow = ({ service, refetch, index, setDeleteProduct }) => {
     const { _id, name, img, available } = service;
     return (
         <tr className='hover'>
@@ -34,7 +16,9 @@ const ProductRow = ({ service, refetch, index }) => {
             </td>
             <td>{name}</td>
             <td>{available}</td>
-            <td><button className="btn btn-xs btn-error text-white" onClick={() => handleDeleteProduct(_id)}>Delete Product</button></td>
+            <td>
+                <label for="my-modal-3" className="btn btn-xs btn-error text-white modal-button " onClick={() => setDeleteProduct(service)}>Delete Product</label>
+            </td>
         </tr>
     );
 };

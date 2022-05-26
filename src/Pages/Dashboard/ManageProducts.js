@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
+import DeleteProductModal from './DeleteProductModal';
 import ProductRow from './ProductRow';
 
 const ManageProducts = () => {
+    const [deleteProduct, setDeleteProduct] = useState(null);
     const { data: services, isLoading, refetch } = useQuery('services', () => fetch('https://pure-dawn-17806.herokuapp.com/services', {
         method: 'GET',
     }).then(res => res.json()));
@@ -31,6 +33,7 @@ const ManageProducts = () => {
                                     services.map((service, index) => <ProductRow
                                         key={service._id}
                                         index={index + 1}
+                                        setDeleteProduct={setDeleteProduct}
                                         service={service}
                                         refetch={refetch}
                                     ></ProductRow>)
@@ -38,6 +41,13 @@ const ManageProducts = () => {
                             </tbody>
                         </table>
                     </div>
+            }
+            {
+                deleteProduct && <DeleteProductModal
+                    deleteProduct={deleteProduct}
+                    services={services}
+                    refetch={refetch}
+                ></DeleteProductModal>
             }
         </>
     );

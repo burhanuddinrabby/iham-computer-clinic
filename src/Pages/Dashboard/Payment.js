@@ -25,15 +25,15 @@ const Payment = () => {
     console.log(order);
 
     return (
-        <div>
-            <div className="card w-50 max-w-md bg-base-100 shadow-xl my-12">
+        <div className='lg:mx-auto text-[black] lg:w-2/4'>
+            <div className="card bg-base-100 shadow-xl my-12">
                 <div className="card-body">
                     <p className="text-success font-bold">Hello, {order.buyerName}</p>
                     <h2 className="card-title">Please Pay for {order.name}</h2>
                     <p>Please pay: ${order.totalPrice}</p>
                 </div>
             </div>
-            <div className="card flex-shrink-0 w-50 max-w-md shadow-2xl bg-base-100">
+            <div className="card flex-shrink-0 shadow-2xl bg-base-100">
                 <div className="card-body">
                     <Elements stripe={stripePromise}>
                         <CheckoutForm order={order} />

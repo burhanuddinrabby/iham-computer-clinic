@@ -65,8 +65,6 @@ const Purchase = () => {
                         else {
                             toast.error(`Failed to add order`)
                         }
-                        // setTreatment(null);
-                        // refetch();
                     });
             }
         }

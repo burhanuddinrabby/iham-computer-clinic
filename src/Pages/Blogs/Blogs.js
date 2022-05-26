@@ -2,26 +2,45 @@ import React from 'react';
 import './Blogs.css'
 const Blogs = () => {
     return (
-        <div className='text-[#dfd2d2]'>
+        <div className='text-[#ece6e6]'>
             <div className='blog-container'>
                 <div className='blog  mt-6'>
-                    <h2>What are differences between JavaScript and nodejs?</h2>
-                    <p>Javascript is a programming language that is used for writing scripts on the website but NodeJS is a Javascript runtime environment. JavaScript is used for client side and NodeJS is used for server side. Nodejs does not have capability to add HTML tags but JavaScript can add HTML tags using DOM.</p>
+                    <h2>How will you improve the performance of react Application?</h2>
+                    <p>Keeping component state local where necessary.
+                        Memoizing React components to prevent unnecessary re-renders.
+                        Code-splitting in React using dynamic import().
+                        Windowing or list virtualization in React.
+                        Lazy loading images in React</p>
                 </div>
 
                 <div className="blog">
-                    <h2>When should we use NodeJS and when should MongoDB?</h2>
-                    <p>NodeJS is JavaScript runtime environment and MongoDB is a NoSQL database. NodeJS is used for server side where it can get, post, update or delete any data from database. When it comes to store something we will use MondoDB and to access data from database we will use NodeJS</p>
+                    <h2>What are different ways to manage a state in a react application?</h2>
+                    <p>There are 4 types of state in a react application. <br />
+                        1.  Local state. <br />
+                        2.  Global state.<br />
+                        3.  Server state.<br />
+                        4.  URL state.<br /></p>
                 </div>
 
                 <div className='blog'>
-                    <h2>What are the differences between NoSQL and SQL?</h2>
-                    <p>NoSQL have dynamic schema where SQL have static schema. NoSQL are horizontally scalable but SQL are vertically scalable. NoSQL is used for storing data in the form of JSON but SQL is used for storing data in the form of SQL.
+                    <h2>How does prototypical inheritance work?</h2>
+                    <p>The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object.
                     </p>
                 </div>
                 <div className='blog'>
-                    <h2>What is JWT and how does it work?</h2>
-                    <p>The full form of JWT is JSON Web Token. It is an open standard that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. When an user logs in jwt creates a token for that user and using that token it verifies if user is authorized or not. If not it takes action.</p>
+                    <h2>Why you dont state directly in React ?For example, If You have const [products,setProducts]=useState.
+                        Why do you not set products =[...] instead , you use the setProducts.?</h2>
+                    <p>One should never update the state directly because of the following reasons: If you update it directly, calling the setState() afterward may just replace the update you made.When you directly update the state, it does not change this..</p>
+                </div>
+                <div className='blog'>
+                    <h2>You have an array of products. Each object has a name, price, description, etc. How will you implement a search to find products by name?</h2>
+                    <p>1) If you need the index of the found element in the array, use findIndex() . <br />
+                        2) If you need to find the index of a value, use Array.prototype.indexOf() <br />
+                        3) If you need to find if a value exists in an array, use Array.prototype.includes().</p>
+                </div>
+                <div className='blog'>
+                    <h2>What is a unit test?Why should write unit tests?</h2>
+                    <p>Unit tests are typically automated tests written and run by software developers to ensure that a section of an application (known as the "unit") meets its design and behaves as intended.In procedural programming, a unit could be an entire module , but it is more commonly an individual function or procedure..</p>
                 </div>
             </div>
         </div>

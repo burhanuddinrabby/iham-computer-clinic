@@ -9,7 +9,8 @@ const Banner = () => {
                 <div className='text-[#bcb4b4]'>
                     <h1 id='' className="text-5xl font-bold">Your Gaming Journey </h1>
                     <h1 id='' className="text-5xl font-bold data-text-sm" datatext="Starts Here...">Starts Here</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <p className="py-6">Iham computer Clinic has been serving all over the world for a century. We've completed a lot of successful
+                        shipment. Enjoy your journey with us</p>
                     <PrimaryButton>Visit Products</PrimaryButton>
                 </div>
             </div>
