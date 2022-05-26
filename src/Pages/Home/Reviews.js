@@ -43,8 +43,8 @@ const Reviews = () => {
                         }
                     </div>
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-1 right-1 top-1/2">
-                        <button onClick={handleDown} className="btn btn-circle btn-accent" disabled={down === 0}>❮</button>
-                        <button onClick={handleUp} className="btn btn-circle" disabled={up >= reviews.length}>❯</button>
+                        <button onClick={handleDown} className="btn btn-circle btn-warning" disabled={down === 0}>❮</button>
+                        <button onClick={handleUp} className="btn btn-circle btn-warning" disabled={up >= reviews.length}>❯</button>
                     </div>
                 </div>
             </div>

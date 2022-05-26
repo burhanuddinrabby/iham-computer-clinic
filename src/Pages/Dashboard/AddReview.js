@@ -86,7 +86,7 @@ const AddReview = () => {
                 <div className="form-control w-full">
                     <input
                         type="file"
-                        className="input input-bordered w-full"
+                        className="input h-9 input-bordered w-full"
                         {...register("image", {
                             required: {
                                 value: true,
