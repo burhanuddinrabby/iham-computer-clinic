@@ -21,6 +21,7 @@ import RequireAdmin from './Pages/Login/RequireAdmin';
 import ManageDoctors from './Pages/Dashboard/ManageDoctors';
 import Payment from './Pages/Dashboard/Payment';
 import Footer from './Pages/Shared/Footer';
+import ManageOrders from './Pages/Dashboard/ManageOrders';
 
 function App() {
   return (
@@ -42,8 +43,9 @@ function App() {
             <Route path="add-review" element={<AddReview></AddReview>}></Route>
             <Route path="payment/:id" element={<Payment></Payment>}></Route>
             <Route path="users" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
+            <Route path="manage-orders" element={<RequireAdmin><ManageOrders></ManageOrders></RequireAdmin>}></Route>
             <Route path="addDoctor" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
-            <Route path="manageDoctor" element={<RequireAdmin><ManageDoctors></ManageDoctors></RequireAdmin>}></Route>
+            <Route path="manage-products" element={<RequireAdmin><ManageDoctors></ManageDoctors></RequireAdmin>}></Route>
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />

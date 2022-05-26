@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faGraduationCap,
+    faLocationDot,
+    faEnvelope,
+    faPhoneFlip,
+} from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import auth from '../../firebase.init';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
-    const { email } = user;
+    const { displayName, email, photoURL } = user;
+    const [defaultUser, setDefault] = useState({});
+    const { education, address, phone, linkedin } = defaultUser;
+    useEffect(() => {
+        fetch(`http://localhost:5000/user?email=${email}`)
+            .then(res => res.json())
+            .then(data => setDefault(data))
+    }, [])
+    console.log(defaultUser);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(email, data);
@@ -25,64 +41,139 @@ const MyProfile = () => {
                 };
             })
     };
-
-    const { displayName } = user;
     return (
-        <div className='lg:w-2/4 mx-auto bg-slate-800 p-10 mt-8 rounded shadow-md'>
+        <div>
+            <div class="hero">
+                <div class="hero-content flex-col lg:flex-row gap-14">
+                    <div className="max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg my-6">
+                        <div class="avatar flex justify-center pt-6 pb-2">
+                            <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                {photoURL ? (
+                                    <img src={photoURL} alt="" />
+                                ) : (
+                                    <img
+                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                        alt=""
+                                    />
+                                )}
+                            </div>
+                        </div>
 
-            <h2 className='text-[#24cfcc] text-center text-4xl font-bold my-6'>Hello {displayName} your email {user.email} </h2>
-            <p className='text-center mb-5'>Please add few more information to introduce yourself</p>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="form-control w-full">
-                    <input
-                        type="text"
-                        className="input h-9 input-bordered w-full"
-                        placeholder="Enter your Phone Number"
-                        {...register("phone", {
-                            required: {
-                                value: true,
-                                message: 'Phone Number is Required'
-                            }
-                        })}
-                    />
-                    <label className="label">
-                        {errors.phone?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.phone.message}</span>}
-                    </label>
+                        <div class="card w-96 bg-base-100">
+                            <div class="card-body">
+                                <h1 className="text-xl font-bold text-[black]">{displayName}</h1>
+                                <div className="flex items-center mt-4 text-gray-700 ">
+                                    <FontAwesomeIcon icon={faEnvelope} />
+                                    <h1 className="px-2 text-sm">Email: {email}</h1>
+                                </div>
+                                <div className="flex items-center mt-4 text-gray-700 ">
+                                    <FontAwesomeIcon icon={faGraduationCap} />
+                                    <h1 className="px-2 text-sm">
+                                        Education: {education ? education : 'No information'}
+                                    </h1>
+                                </div>
+                                <div className="flex items-center mt-4 text-gray-700 ">
+                                    <FontAwesomeIcon icon={faLocationDot} />
+                                    <h1 className="px-2 text-sm">
+                                        Location: {address ? address : 'No information'}
+                                    </h1>
+                                </div>
+                                <div className="flex items-center mt-4 text-gray-700 ">
+                                    <FontAwesomeIcon icon={faPhoneFlip} />
+                                    <h1 className="px-2 text-sm">
+                                        Phone number: {phone ? phone : 'No information'}
+                                    </h1>
+                                </div>
+                                <div className="flex items-center mt-4 text-gray-700 ">
+                                    <FontAwesomeIcon icon={faLinkedin} />
+                                    <h1 className="px-2 text-sm">
+                                        LinkedIn Account: {linkedin ? linkedin : 'No information'}
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* </div> */}
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div class="card flex-shrink-0 w-96 max-w-sm shadow-lg bg-base-100">
+                            <div class="card-body">
+                                <h1 className="text-xl font-bold text-[black]">Update Your Profile</h1>
+                                <div class="form-control">
+                                    <input
+                                        type="text"
+                                        placeholder="Enter your Educational Qualification"
+                                        class="input input-bordered"
+                                        required
+                                        {...register("education", {
+                                            required: {
+                                                value: true,
+                                                message: 'Your educational background is required'
+                                            }
+                                        })}
+                                    />
+                                    <label className="label">
+                                        {errors.education?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.education.message}</span>}
+                                    </label>
+                                </div>
+                                <div class="form-control">
+                                    <input
+                                        type="text"
+                                        class="input input-bordered"
+                                        placeholder="Enter your address"
+                                        {...register("address", {
+                                            required: {
+                                                value: true,
+                                                message: 'Address is Required'
+                                            }
+                                        })}
+                                    />
+                                    <label className="label">
+                                        {errors.address?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.address.message}</span>}
+                                    </label>
+                                </div>
+                                <div class="form-control">
+                                    <input
+                                        type="number"
+                                        class="input input-bordered"
+                                        placeholder="Enter your Phone Number"
+                                        {...register("phone", {
+                                            required: {
+                                                value: true,
+                                                message: 'Phone Number is Required'
+                                            }
+                                        })}
+                                    />
+                                    <label className="label">
+                                        {errors.phone?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.phone.message}</span>}
+                                    </label>
+                                </div>
+                                <div class="form-control">
+                                    <input
+                                        type="text"
+                                        class="input input-bordered"
+                                        placeholder="Enter your linkedin profile link"
+                                        {...register("linkedin", {
+                                            required: {
+                                                value: true,
+                                                message: 'Linkedin profile link is Required'
+                                            }
+                                        })}
+                                    />
+                                    <label className="label">
+                                        {errors.linkedin?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.linkedin.message}</span>}
+                                    </label>
+                                </div>
+                                <div class="form-control mt-6">
+                                    <button type="submit" class="btn btn-primary">Update Your Information</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div className="form-control w-full">
-                    <input
-                        type="text"
-                        className="input h-9 input-bordered w-full"
-                        placeholder="Enter your address"
-                        {...register("address", {
-                            required: {
-                                value: true,
-                                message: 'Address is Required'
-                            }
-                        })}
-                    />
-                    <label className="label">
-                        {errors.address?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.address.message}</span>}
-                    </label>
-                </div>
-                <div className="form-control w-full">
-                    <input
-                        type="text"
-                        className="input h-9 input-bordered w-full"
-                        placeholder="Enter your linkedin profile link"
-                        {...register("linkedin", {
-                            required: {
-                                value: true,
-                                message: 'Linkedin profile link is Required'
-                            }
-                        })}
-                    />
-                    <label className="label">
-                        {errors.linkedin?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.linkedin.message}</span>}
-                    </label>
-                </div>
-                <button className="btn btn-primary w-full " type="submit">Update Your Information</button>
-            </form>
+            </div>
+
+
         </div>
     );
 };
