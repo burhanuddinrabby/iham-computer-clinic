@@ -1,159 +1,166 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
-import Loading from '../Shared/Loading';
 
 const AddProduct = () => {
-    // const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const imageStorageKey = '1525e132988dcf906574630da4b88790';
 
-    // const { data: services, isLoading } = useQuery('services', () => fetch('https://secret-dusk-46242.herokuapp.com/service').then(res => res.json()))
+    const onSubmit = async data => {
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        toast.warn('Adding product. It may take a while');
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    const img = result.data.url;
+                    const name = data.name;
+                    const description = data.description;
+                    const newAvailable = parseInt(data.available);
+                    const newMinQuantity = parseInt(data.minQuantity);
+                    const newPrice = parseInt(data.price);
+                    const product = {
+                        name: name,
+                        description: description,
+                        available: newAvailable,
+                        minQuantity: newMinQuantity,
+                        price: newPrice,
+                        img: img
+                    };
+                    console.log(product);
+                    //adding item to database
+                    fetch('http://localhost:5000/services', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                toast.success("Product added successfully !");
+                            }
+                        })
+                }
+            })
+        // reset();
+    }
 
-    /*/ const imageStorageKey='4295ac4d47b569312bea67b440cdbdbb';
+    return (
+        <div>
+            <h2 className="text-2xl text-center text-[#44ced8]">Add a New Product</h2>
+            <form onSubmit={handleSubmit(onSubmit)} className='text-black'>
+                <div class="card lg:max-w-3xl mx-auto shadow-lg bg-base-100 p-10">
+                    <div className="form-control w-full">
+                        <input
+                            type="text"
+                            placeholder="Product Name"
+                            className="input input-bordered w-full "
+                            {...register("name", {
+                                required: {
+                                    value: true,
+                                    message: 'Product Name is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.name?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.name.message}</span>}
+                        </label>
+                    </div>
+                    <div className="form-control w-full">
+                        <input
+                            type="text"
+                            placeholder="Product Description"
+                            className="input input-bordered w-full "
+                            {...register("description", {
+                                required: {
+                                    value: true,
+                                    message: 'Product description is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.description?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.description.message}</span>}
+                        </label>
+                    </div>
+                    <div className="form-control w-full">
+                        <input
+                            type="number"
+                            placeholder="Total Quantity"
+                            className="input input-bordered w-full "
+                            {...register("available", {
+                                required: {
+                                    value: true,
+                                    message: 'Total Quantity is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.available?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.available.message}</span>}
+                        </label>
+                    </div>
+                    <div className="form-control w-full">
+                        <input
+                            type="number"
+                            placeholder="Minimum buying Quantity"
+                            className="input input-bordered w-full "
+                            {...register("minQuantity", {
+                                required: {
+                                    value: true,
+                                    message: 'Minimum Quantity is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.minQuantity?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.minQuantity.message}</span>}
+                        </label>
+                    </div>
+                    <div className="form-control w-full">
+                        <input
+                            type="price"
+                            placeholder="Product Price"
+                            className="input input-bordered w-full "
+                            {...register("price", {
+                                required: {
+                                    value: true,
+                                    message: 'Product price is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.price?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.price.message}</span>}
+                        </label>
+                    </div>
 
-    // /**
-    //  * 3 ways to store images
-    //  * 1. Third party storage //Free open public storage is ok for Practice project 
-    //  * 2. Your own storage in your own server (file system)
-    //  * 3. Database: Mongodb 
-    //  * 
-    //  * YUP: to validate file: Search: Yup file validation for react hook form
-    // */
-    // const onSubmit = async data => {
-    //     const image = data.image[0];
-    //     const formData = new FormData();
-    //     formData.append('image', image);
-    //     const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
-    //     fetch(url, {
-    //         method: 'POST',
-    //         body: formData
-    //     })
-    //     .then(res=>res.json())
-    //     .then(result =>{
-    //         if(result.success){
-    //             const img = result.data.url;
-    //             const doctor = {
-    //                 name: data.name,
-    //                 email: data.email,
-    //                 specialty: data.specialty,
-    //                 img: img
-    //             }
-    //             // send to your database 
-    //             fetch('https://secret-dusk-46242.herokuapp.com/doctor', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'content-type': 'application/json',
-    //                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
-    //                 },
-    //                 body: JSON.stringify(doctor)
-    //             })
-    //             .then(res =>res.json())
-    //             .then(inserted =>{
-    //                 if(inserted.insertedId){
-    //                     toast.success('Doctor added successfully')
-    //                     reset();
-    //                 }
-    //                 else{
-    //                     toast.error('Failed to add the doctor');
-    //                 }
-    //             })
+                    <div className="form-control w-full">
+                        <input
+                            type="file"
+                            className="input input-bordered w-full h-9"
+                            {...register("image", {
+                                required: {
+                                    value: true,
+                                    message: 'Image is Required'
+                                }
+                            })}
+                        />
+                        <label className="label">
+                            {errors.image?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.image.message}</span>}
+                        </label>
+                    </div>
 
-    //         }
-
-    //     })
-    // }
-
-    // if (isLoading) {
-    //     return <Loading></Loading>
-    // }
-
-    // return (
-    //     <div>
-    //         <h2 className="text-2xl">Add a New Doctor</h2>
-    //         <form onSubmit={handleSubmit(onSubmit)}>
-
-    //             <div className="form-control w-full max-w-xs">
-    //                 <label className="label">
-    //                     <span className="label-text">Name</span>
-    //                 </label>
-    //                 <input
-    //                     type="text"
-    //                     placeholder="Your Name"
-    //                     className="input input-bordered w-full max-w-xs"
-    //                     {...register("name", {
-    //                         required: {
-    //                             value: true,
-    //                             message: 'Name is Required'
-    //                         }
-    //                     })}
-    //                 />
-    //                 <label className="label">
-    //                     {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
-    //                 </label>
-    //             </div>
-
-    //             <div className="form-control w-full max-w-xs">
-    //                 <label className="label">
-    //                     <span className="label-text">Email</span>
-    //                 </label>
-    //                 <input
-    //                     type="email"
-    //                     placeholder="Your Email"
-    //                     className="input input-bordered w-full max-w-xs"
-    //                     {...register("email", {
-    //                         required: {
-    //                             value: true,
-    //                             message: 'Email is Required'
-    //                         },
-    //                         pattern: {
-    //                             value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-    //                             message: 'Provide a valid Email'
-    //                         }
-    //                     })}
-    //                 />
-    //                 <label className="label">
-    //                     {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-    //                     {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-    //                 </label>
-    //             </div>
-
-    //             <div className="form-control w-full max-w-xs">
-    //                 <label className="label">
-    //                     <span className="label-text">Specialty</span>
-    //                 </label>
-    //                 <select {...register('specialty')} className="select input-bordered w-full max-w-xs">
-    //                     {
-    //                         services.map(service => <option
-    //                             key={service._id}
-    //                             value={service.name}
-    //                         >{service.name}</option>)
-    //                     }
-    //                 </select>
-    //             </div>
-
-    //             <div className="form-control w-full max-w-xs">
-    //                 <label className="label">
-    //                     <span className="label-text">Photo</span>
-    //                 </label>
-    //                 <input
-    //                     type="file"
-    //                     className="input input-bordered w-full max-w-xs"
-    //                     {...register("image", {
-    //                         required: {
-    //                             value: true,
-    //                             message: 'Image is Required'
-    //                         }
-    //                     })}
-    //                 />
-    //                 <label className="label">
-    //                     {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
-    //                 </label>
-    //             </div>
-
-    //             <input className='btn w-full max-w-xs text-white' type="submit" value="Add" />
-    //         </form>
-    //     </div>
-    // );
+                    <input className='btn w-full text-white' type="submit" value="Add" />
+                </div>
+            </form>
+        </div>
+    );
 };
 
 export default AddProduct;

@@ -19,7 +19,6 @@ const AddReview = () => {
         console.log(image);
         const formData = new FormData();
         formData.append('image', image);
-        console.log(formData);
         toast.warn('Adding review. It may take a while');
         const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
         fetch(url, {
@@ -37,7 +36,7 @@ const AddReview = () => {
                         rating,
                         img: img
                     }
-                    //adding item to database
+                    //adding review to database
                     fetch('http://localhost:5000/add-review', {
                         method: 'POST',
                         headers: {
