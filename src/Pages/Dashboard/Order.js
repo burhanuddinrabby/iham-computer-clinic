@@ -1,8 +1,8 @@
 import React from 'react';
-import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
-const Order = ({ orders, order, index, setOrders, setDeletingOrder }) => {
-    const { _id, name, quantity, totalPrice } = order;
+const Order = ({ order, index, setOrders, setDeletingOrder }) => {
+    const { name, quantity, totalPrice } = order;
     return (
         <>
             <tr className="hover">
@@ -13,19 +13,20 @@ const Order = ({ orders, order, index, setOrders, setDeletingOrder }) => {
                 <td>${totalPrice}</td>
                 <td>
                     <div className='flex gap-3 justify-center'>
-                        <button className='btn btn-xs btn-success'>Pay</button>
-                        <label for="my-modal-3" className="btn btn-xs btn-error modal-button " onClick={() => setDeletingOrder(order)}>Cancel</label>
+                        {
+                            order.paid ?
+                                <>
+                                    <span className='text-success'>Paid</span>
+                                    <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
+                                </>
+                                :
+                                <>
+                                    <Link to={`/dashboard/payment/${order._id}`} className='btn btn-success btn-xs'>Pay</Link>
+                                    <label for="my-modal-3" className="btn btn-xs btn-error modal-button " onClick={() => setDeletingOrder(order)}>Cancel</label>
+                                </>
+                        }
 
                     </div>
-                    {/* <Link to={`/dashboard/payment/${order._id}`}>
-                                        </Link> */}
-                    {/* {
-                                    (order.price && !order.paid) && 
-                                    } */}
-                    {/* {(order.price && order.paid) && <div>
-                                        <p><span className='text-success'>Paid</span></p>
-                                        <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
-                                    </div>} */}
                 </td>
             </tr>
         </>
