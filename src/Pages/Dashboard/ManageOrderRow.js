@@ -5,7 +5,7 @@ const ManageOrderRow = ({ index, order }) => {
     const { _id, name, quantity, buyerName, paid, shipped } = order;
     const handleShipment = (id) => {
         console.log(id);
-        fetch(`https://pure-dawn-17806.herokuapp.com//ship-order/${id}`, {
+        fetch(`https://pure-dawn-17806.herokuapp.com/ship-order/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
