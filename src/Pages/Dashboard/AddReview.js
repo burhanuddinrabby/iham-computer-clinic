@@ -57,7 +57,7 @@ const AddReview = () => {
 
 
         //reset form
-        // reset();
+        reset();
     }
     return (
         <div className='lg:w-2/4 mx-auto bg-slate-800 p-10 mt-8 rounded shadow-md'>

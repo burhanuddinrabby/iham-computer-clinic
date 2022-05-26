@@ -81,7 +81,7 @@ const MyProfile = () => {
                         {errors.linkedin?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.linkedin.message}</span>}
                     </label>
                 </div>
-                <button className="btn btn-primary w-full " type="submit">Add Your Review</button>
+                <button className="btn btn-primary w-full " type="submit">Update Your Information</button>
             </form>
         </div>
     );
