@@ -24,9 +24,9 @@ const ProductRow = ({ service, refetch, index }) => {
         <tr className='hover'>
             <th>{index}</th>
             <td>
-                <div class="flex items-center justify-center space-x-3">
-                    <div class="avatar">
-                        <div class="mask mask-squircle w-12 h-12">
+                <div className="flex items-center justify-center space-x-3">
+                    <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
                             <img src={img} alt="Avatar Tailwind CSS Component" />
                         </div>
                     </div>

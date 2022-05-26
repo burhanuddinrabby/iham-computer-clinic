@@ -51,14 +51,14 @@ const AddProduct = () => {
                         })
                 }
             })
-        // reset();
+        reset();
     }
 
     return (
         <div>
             <h2 className="text-2xl text-center text-[#44ced8]">Add a New Product</h2>
             <form onSubmit={handleSubmit(onSubmit)} className='text-black'>
-                <div class="card lg:max-w-3xl mx-auto shadow-lg bg-base-100 p-10">
+                <div className="card lg:max-w-3xl mx-auto shadow-lg bg-base-100 p-10">
                     <div className="form-control w-full">
                         <input
                             type="text"

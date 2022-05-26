@@ -43,11 +43,11 @@ const MyProfile = () => {
     };
     return (
         <div>
-            <div class="hero">
-                <div class="hero-content flex-col lg:flex-row gap-14">
+            <div className="hero">
+                <div className="hero-content flex-col lg:flex-row gap-14">
                     <div className="max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg my-6">
-                        <div class="avatar flex justify-center pt-6 pb-2">
-                            <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <div className="avatar flex justify-center pt-6 pb-2">
+                            <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                 {photoURL ? (
                                     <img src={photoURL} alt="" />
                                 ) : (
@@ -59,8 +59,8 @@ const MyProfile = () => {
                             </div>
                         </div>
 
-                        <div class="card w-96 bg-base-100">
-                            <div class="card-body">
+                        <div className="card w-96 bg-base-100">
+                            <div className="card-body">
                                 <h1 className="text-xl font-bold text-[black]">{displayName}</h1>
                                 <div className="flex items-center mt-4 text-gray-700 ">
                                     <FontAwesomeIcon icon={faEnvelope} />
@@ -96,14 +96,14 @@ const MyProfile = () => {
                     {/* </div> */}
 
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div class="card flex-shrink-0 w-96 max-w-sm shadow-lg bg-base-100">
-                            <div class="card-body">
+                        <div className="card flex-shrink-0 w-96 max-w-sm shadow-lg bg-base-100">
+                            <div className="card-body">
                                 <h1 className="text-xl font-bold text-[black]">Update Your Profile</h1>
-                                <div class="form-control">
+                                <div className="form-control">
                                     <input
                                         type="text"
                                         placeholder="Enter your Educational Qualification"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         required
                                         {...register("education", {
                                             required: {
@@ -116,10 +116,10 @@ const MyProfile = () => {
                                         {errors.education?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.education.message}</span>}
                                     </label>
                                 </div>
-                                <div class="form-control">
+                                <div className="form-control">
                                     <input
                                         type="text"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         placeholder="Enter your address"
                                         {...register("address", {
                                             required: {
@@ -132,10 +132,10 @@ const MyProfile = () => {
                                         {errors.address?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.address.message}</span>}
                                     </label>
                                 </div>
-                                <div class="form-control">
+                                <div className="form-control">
                                     <input
                                         type="number"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         placeholder="Enter your Phone Number"
                                         {...register("phone", {
                                             required: {
@@ -148,10 +148,10 @@ const MyProfile = () => {
                                         {errors.phone?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.phone.message}</span>}
                                     </label>
                                 </div>
-                                <div class="form-control">
+                                <div className="form-control">
                                     <input
                                         type="text"
-                                        class="input input-bordered"
+                                        className="input input-bordered"
                                         placeholder="Enter your linkedin profile link"
                                         {...register("linkedin", {
                                             required: {
@@ -164,8 +164,8 @@ const MyProfile = () => {
                                         {errors.linkedin?.type === 'required' && <span className="label-text-alt text-red-400 text-sm">{errors.linkedin.message}</span>}
                                     </label>
                                 </div>
-                                <div class="form-control mt-6">
-                                    <button type="submit" class="btn btn-primary">Update Your Information</button>
+                                <div className="form-control mt-6">
+                                    <button type="submit" className="btn btn-primary">Update Your Information</button>
                                 </div>
                             </div>
                         </div>

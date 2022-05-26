@@ -3,9 +3,9 @@ import React from 'react';
 const About = () => {
     return (
         <div>
-            <div class="hero">
-                <div class="hero-content flex-col lg:flex-row">
-                    <img src="https://i.ibb.co/wSPtRVD/IMG-20220516-WA0008-01.jpg" class="lg:max-w-md rounded-lg shadow-2xl" alt='' />
+            <div className="hero">
+                <div className="hero-content flex-col lg:flex-row">
+                    <img src="https://i.ibb.co/wSPtRVD/IMG-20220516-WA0008-01.jpg" className="lg:max-w-md rounded-lg shadow-2xl" alt='' />
                     <div className='bg-base-300 text-black p-10 rounded-xl'>
                         <h1 className='text-4xl font-bold mb-2'>I'm Burhan Uddin</h1>
                         <p className='text-md '>I'm a student. I passed Higher Secondary level in 2021. <br />

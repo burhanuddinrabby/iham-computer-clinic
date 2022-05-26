@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { Link, useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { toast } from 'react-toastify';
 import Order from './Order';
+import DeleteConfirmModal from './DeleteConfirmModal';
 
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
+    const [deletingOrder, setDeletingOrder] = useState(null);
     const [user] = useAuthState(auth);
-    const navigate = useNavigate()
-    console.log(orders);
     useEffect(() => {
         if (user) {
             fetch(`http://localhost:5000/orders?email=${user.email}`, {
@@ -19,15 +16,7 @@ const MyOrders = () => {
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }
             })
-                .then(res => {
-                    // console.log('res', res);
-                    // if (res.status === 401 || res.status === 403) {
-                    //     signOut(auth);
-                    //     localStorage.removeItem('accessToken');
-                    //     navigate('/');
-                    // }
-                    return res.json()
-                })
+                .then(res => res.json())
                 .then(data => {
 
                     setOrders(data);
@@ -51,13 +40,18 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => <Order key={order._id} orders={orders} order={order} setOrders={setOrders} index={index}></Order>)
+                            orders.map((order, index) => <Order key={order._id} setDeletingOrder={setDeletingOrder} orders={orders} order={order} setOrders={setOrders} index={index}></Order>)
                         }
 
 
                     </tbody>
                 </table>
-
+                {deletingOrder && <DeleteConfirmModal
+                    deletingOrder={deletingOrder}
+                    orders={orders}
+                    setOrders={setOrders}
+                    setDeletingOrder={setDeletingOrder}
+                ></DeleteConfirmModal>}
             </div>
         </div>
     );
