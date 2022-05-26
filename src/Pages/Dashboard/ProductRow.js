@@ -1,8 +1,25 @@
 import React from 'react';
 
 const ProductRow = ({ service, refetch, index }) => {
-
-    const { _id, name, img, available, price, minQuantity } = service;
+    const handleDeleteProduct = (id) => {
+        const confirm = window.confirm('Are you sure you want to delete this product?');
+        if (confirm) {
+            fetch(`http://localhost:5000/service/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        refetch();
+                    }
+                }
+                )
+        }
+    }
+    const { _id, name, img, available } = service;
     return (
         <tr className='hover'>
             <th>{index}</th>
@@ -17,7 +34,7 @@ const ProductRow = ({ service, refetch, index }) => {
             </td>
             <td>{name}</td>
             <td>{available}</td>
-            <td><button className="btn btn-xs btn-error text-white">Delete Product</button></td>
+            <td><button className="btn btn-xs btn-error text-white" onClick={() => handleDeleteProduct(_id)}>Delete Product</button></td>
         </tr>
     );
 };

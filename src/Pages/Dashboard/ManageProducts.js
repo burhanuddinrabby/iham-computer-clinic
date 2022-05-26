@@ -18,7 +18,7 @@ const ManageProducts = () => {
             <h1 className='text-6xl text-center font-bold my-8 text-[#24cfcc]'>All Products</h1>
             {
                 services.length <= 0 ? <Loading></Loading> :
-                    <div className="overflow-x-auto text-black">
+                    <div className="overflow-x-auto text-black mb-10">
                         <table className="table w-full text-center">
                             <thead>
                                 <tr>

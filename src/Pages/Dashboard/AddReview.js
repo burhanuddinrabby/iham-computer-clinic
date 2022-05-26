@@ -99,13 +99,15 @@ const AddReview = () => {
                 </div>
 
 
-                <span className='text-lg'>Your rating is : <span className="font-bold">{rating}</span> / 5</span>
-                <div className="mb-3 flex justify-center">
-                    <ReactStars
-                        count={5}
-                        onChange={ratingChanged}
-                        size={44}
-                        color2={'#ffd700'} />
+                <div className="mb-3 flex justify-center items-center">
+                    <span className='text-lg mt-2'>Your rating is : <span className="font-bold">{rating}</span> / 5</span>&nbsp;&nbsp;
+                    <span>
+                        <ReactStars
+                            count={5}
+                            onChange={ratingChanged}
+                            size={44}
+                            color2={'#ffd700'} />
+                    </span>
                 </div>
 
                 <button className="btn btn-primary w-full " type="submit">Add Your Review</button>
