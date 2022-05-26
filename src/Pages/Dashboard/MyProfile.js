@@ -18,7 +18,7 @@ const MyProfile = () => {
     const [defaultUser, setDefault] = useState({});
     const { education, address, phone, linkedin } = defaultUser;
     useEffect(() => {
-        fetch(`http://localhost:5000/user?email=${email}`)
+        fetch(`https://pure-dawn-17806.herokuapp.com/user?email=${email}`)
             .then(res => res.json())
             .then(data => setDefault(data))
     }, [])
@@ -26,7 +26,7 @@ const MyProfile = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(email, data);
-        fetch(`http://localhost:5000/user-update/${email}`, {
+        fetch(`https://pure-dawn-17806.herokuapp.com/user-update/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

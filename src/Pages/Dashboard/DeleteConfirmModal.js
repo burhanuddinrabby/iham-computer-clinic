@@ -5,7 +5,7 @@ const DeleteConfirmModal = ({ deletingOrder, orders, setOrders }) => {
     const { _id, name } = deletingOrder;
     const handleDelete = (id) => {
         console.log('deleting', id);
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://pure-dawn-17806.herokuapp.com/orders/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',

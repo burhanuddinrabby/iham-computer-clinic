@@ -4,7 +4,7 @@ import ManageOrderRow from './ManageOrderRow';
 const ManageOrders = () => {
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/all-orders', {
+        fetch('https://pure-dawn-17806.herokuapp.com/all-orders', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

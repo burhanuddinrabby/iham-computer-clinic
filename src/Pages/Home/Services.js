@@ -8,7 +8,7 @@ const Services = () => {
     const [pageNumber, setPage] = useState(1);
     const [services, setServices] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://pure-dawn-17806.herokuapp.com/services')
             .then(res => res.json())
             .then(data => setServices(data.reverse()))
     }, [])

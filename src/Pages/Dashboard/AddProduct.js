@@ -35,7 +35,7 @@ const AddProduct = () => {
                     };
                     console.log(product);
                     //adding item to database
-                    fetch('http://localhost:5000/services', {
+                    fetch('https://pure-dawn-17806.herokuapp.com/services', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

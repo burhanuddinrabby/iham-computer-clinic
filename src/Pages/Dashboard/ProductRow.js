@@ -4,7 +4,7 @@ const ProductRow = ({ service, refetch, index }) => {
     const handleDeleteProduct = (id) => {
         const confirm = window.confirm('Are you sure you want to delete this product?');
         if (confirm) {
-            fetch(`http://localhost:5000/service/${id}`, {
+            fetch(`https://pure-dawn-17806.herokuapp.com/service/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

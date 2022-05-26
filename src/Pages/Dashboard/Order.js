@@ -17,7 +17,7 @@ const Order = ({ order, index, setOrders, setDeletingOrder }) => {
                             order.paid ?
                                 <>
                                     <span className='text-success'>Paid</span>
-                                    <p>Transaction id: <span className='text-success'>{order.transactionId}</span></p>
+                                    <p>TrxId: <span className='text-error'>{order.transactionId}</span></p>
                                 </>
                                 :
                                 <>

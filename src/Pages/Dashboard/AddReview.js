@@ -37,7 +37,7 @@ const AddReview = () => {
                         img: img
                     }
                     //adding review to database
-                    fetch('http://localhost:5000/add-review', {
+                    fetch('https://pure-dawn-17806.herokuapp.com/add-review', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ const Purchase = () => {
     const [service, setService] = useState({});
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`http://localhost:5000/purchase/${id}`);
+            const res = await fetch(`https://pure-dawn-17806.herokuapp.com/purchase/${id}`);
             const data = await res.json();
             setService(data);
             setQuantity(data.minQuantity);
@@ -41,7 +41,7 @@ const Purchase = () => {
                 const newService = { ...service, available: newAvailable };
                 setService(newService);
                 console.log(newOrder);
-                fetch('http://localhost:5000/orders', {
+                fetch('https://pure-dawn-17806.herokuapp.com/orders', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
@@ -53,7 +53,7 @@ const Purchase = () => {
                     .then(data => {
                         if (data.success) {
                             toast(`Your order is set. Go to dashboard and check My order`)
-                            fetch(`http://localhost:5000/purchase/${id}`, {
+                            fetch(`https://pure-dawn-17806.herokuapp.com/purchase/${id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'content-type': 'application/json',

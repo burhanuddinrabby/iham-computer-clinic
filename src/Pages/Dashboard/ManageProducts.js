@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import ProductRow from './ProductRow';
 
 const ManageProducts = () => {
-    const { data: services, isLoading, refetch } = useQuery('services', () => fetch('http://localhost:5000/services', {
+    const { data: services, isLoading, refetch } = useQuery('services', () => fetch('https://pure-dawn-17806.herokuapp.com/services', {
         method: 'GET',
     }).then(res => res.json()));
     if (isLoading) {
